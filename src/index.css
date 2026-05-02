@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #00FFFF;
+  --color-secondary: #FF2D95;
+  --color-background-light: #F5F5F5;
+  --color-background-dark: #000000;
+  
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --radius-large: 48px;
+
+  --animate-glitch-skew: glitch-skew 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  --animate-glitch-blink: glitch-blink 0.3s infinite;
+}
+
+@keyframes glitch-skew {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 2px) skew(2deg) }
+  40% { transform: translate(-2px, -2px) skew(-2deg) }
+  60% { transform: translate(2px, 2px) skew(-1deg) }
+  80% { transform: translate(2px, -2px) skew(1deg) }
+  100% { transform: translate(0) }
+}
+
+@keyframes glitch-blink {
+  0%, 100% { opacity: 1 }
+  50% { opacity: 0.8 }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #FF2D95; border-radius: 2px; }
+::-webkit-scrollbar-corner { background: transparent; }
+
+@utility glitch-text {
+  text-shadow:
+    2px 0 #FF2D95,
+    -2px 0 #00FFFF,
+    0 0 12px rgba(255, 45, 149, 0.5),
+    0 0 30px rgba(255, 45, 149, 0.25);
+}
+
+@utility glitch-text-strong {
+  text-shadow:
+    3px 0 #FF2D95,
+    -3px 0 #00FFFF,
+    0 0 16px rgba(255, 45, 149, 0.7),
+    0 0 40px rgba(255, 45, 149, 0.4),
+    0 0 80px rgba(255, 45, 149, 0.15);
+}
+
+@utility glitch-border {
+  box-shadow:
+    3px 3px 0px #FF2D95,
+    -3px -3px 0px #00FFFF,
+    0 0 20px rgba(255, 45, 149, 0.25);
+}
+
+@utility glitch-border-cyan {
+  box-shadow: 4px 4px 0px #00FFFF;
+}
+
+@utility glow-pink {
+  box-shadow: 0 0 12px rgba(255, 45, 149, 0.45), 0 0 28px rgba(255, 45, 149, 0.2);
+}
+
+@utility glow-pink-strong {
+  box-shadow: 0 0 16px rgba(255, 45, 149, 0.6), 0 0 40px rgba(255, 45, 149, 0.3), 0 0 80px rgba(255, 45, 149, 0.1);
+}
+
+@utility glow-cyan-strong {
+  box-shadow: 0 0 16px rgba(0, 255, 255, 0.5), 0 0 40px rgba(0, 255, 255, 0.25), 0 0 80px rgba(0, 255, 255, 0.1);
+}
+
+@utility text-glow {
+  text-shadow: 0 0 10px rgba(255, 45, 149, 0.6), 0 0 20px rgba(255, 45, 149, 0.3);
+}
+
+@utility text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.25);
+}
+
+@utility grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(255, 45, 149, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 45, 149, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #FF2D95; }
+
+.dropzone-glitch {
+  animation: none;
+}
+.group:hover .dropzone-glitch {
+  animation: glitch-skew 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+}
+
+.section-body {
+  display: grid;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition: grid-template-rows 0.35s ease, opacity 0.25s ease;
+}
+.section-collapsed .section-body {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  pointer-events: none;
+}
+.section-body > .section-inner {
+  overflow: hidden;
+}
+.chevron {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.section-collapsed .chevron {
+  transform: rotate(-90deg);
+}
